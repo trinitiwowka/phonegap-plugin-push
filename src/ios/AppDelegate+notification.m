@@ -120,7 +120,11 @@ NSString *const pushPluginApplicationDidBecomeActiveNotification = @"pushPluginA
             }
 
             pushHandler.notificationMessage = userInfo;
-            pushHandler.isInline = NO;
+
+            // ХАК изменил на YES т.к при открытии приложения, даже если не нажал на пуш - отрабатывало действие при нажатии на пуш
+            // теперь в приложении мы будем считать что пуш пришел на переднем плане и не обработаем его
+            // pushHandler.isInline = NO;
+            pushHandler.isInline = YES;
             [pushHandler notificationReceived];
         } else {
             NSLog(@"just put it in the shade");
